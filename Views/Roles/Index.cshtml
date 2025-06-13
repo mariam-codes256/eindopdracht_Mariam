@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+
+@{
+    ViewBag.Title = "Rollenbeheer";
+}
+
+<h2>Rollenbeheer</h2>
+
+<p>
+    @Html.ActionLink("Create New Role", "Create", "Roles", null, new { @class = "btn btn-primary" })
+</p>
+
+<hr />
+
+<table class="table">
+    <tr>
+        <th>Existing roles in the system</th>
+    </tr>
+    @foreach (var role in Model)
+    {
+        <tr>
+            <td>@role.Name</td>
+        </tr>
+    }
+</table>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        Search user
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                @using (Html.BeginForm("ManageUserRoles", "Roles"))
+                {
+                    <div class="form-group">
+                        @Html.TextBox("UserName", null, new { @class = "form-control", placeholder = "Enter username..." })
+                    </div>
+                    <input class="btn btn-default" type="submit" value="Search" />
+                }
+            </div>
+            <div class="col-md-6">
+                @Html.ActionLink("List all users", "Users", "Roles", null, new { @class = "btn btn-success" })
+            </div>
+        </div>
+    </div>
+</div>

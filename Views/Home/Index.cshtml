@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    body {
+        background: linear-gradient(to bottom, #fffcee, #ffe9f0);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .hero-section {
+        background: url('/images/galaxysnack.png') no-repeat center center;
+        background-size: cover;
+        padding: 100px 30px;
+        color: white;
+        text-shadow: 1px 1px 4px #000;
+        border-radius: 12px;
+        margin-bottom: 30px;
+    }
+
+    .btn-mood {
+        background-color: #FFD700;
+        color: #000;
+        border: none;
+    }
+
+        .btn-mood:hover {
+            background-color: #FFB800;
+        }
+
+    h2 {
+        color: #800080;
+    }
+</style>
+
+<main>
+    <section class="hero-section text-center">
+        <h1 style="font-size: 3rem;">SnackLab 🌌🍭</h1>
+        <p class="lead">Dé plek voor unieke en internationale snacks – ontdek de smaken van de wereld!</p>
+        <a href="/Product" class="btn btn-mood btn-lg mt-3">Ontdek onze snacks &raquo;</a>
+    </section>
+
+    <div class="row text-center">
+        <section class="col-md-4">
+            <h2>🌍 Waarom SnackLab?</h2>
+            <p>Van Japanse snoepjes tot Koreaanse chips – wij brengen wereldsmaken tot bij jou!</p>
+            <a class="btn btn-outline-dark" href="/Product">Shop nu &raquo;</a>
+        </section>
+
+        <section class="col-md-4">
+            <h2>🧃 Topcategorieën</h2>
+            <p>🍬 Snoep – 🥤 Drankjes – 🍟 Chips – 🔥 Limited Editions</p>
+            <a class="btn btn-outline-dark" href="/Product">Bekijk alles &raquo;</a>
+        </section>
+
+        <section class="col-md-4">
+            <h2>🛒 Winkelmandje</h2>
+            <p>Voeg snacks toe, ontdek kortingen en geniet van een vlotte afhandeling!</p>
+            <a class="btn btn-outline-dark" href="/Product/Cart">Naar winkelmandje &raquo;</a>
+        </section>
+    </div>
+
+    <hr />
+    <section class="text-center my-5">
+        <h2>📸 Volg ons op Instagram:</h2>
+        <a href="https://www.instagram.com/snacklab.international" target="_blank">snacklab.international</a>
+
+        <blockquote class="instagram-media"
+                    data-instgrm-permalink="https://www.instagram.com/p/DK22GRiiA5f/"
+                    data-instgrm-version="14"
+                    style="background:#FFF; border:0; margin: 1px auto; max-width:540px; min-width:320px; width:100%;">
+        </blockquote>
+
+        <script async src="//www.instagram.com/embed.js"></script>
+    </section>
+</main>

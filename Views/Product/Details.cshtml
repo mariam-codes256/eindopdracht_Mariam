@@ -1,0 +1,83 @@
+﻿@model SnackLab.Entities.Product
+
+@{
+    ViewBag.Title = "Productdetails";
+}
+
+<h2 class="mb-4">@Model.Name</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded shadow" style="max-height: 400px;" />
+        }
+        else
+        {
+            <div class="alert alert-warning">Geen afbeelding beschikbaar.</div>
+        }
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow p-4 bg-light rounded">
+            <h4 class="mb-3">@Model.Name</h4>
+
+            <p><strong>Beschrijving:</strong> @Model.Description</p>
+            <p><strong>Prijs:</strong> € @Model.Price.ToString("0.00")</p>
+            <p><strong>Categorie:</strong> @Model.Category</p>
+
+            <div class="d-flex gap-2 mt-3">
+                <a href="@Url.Action("Index", "Product")" class="btn btn-secondary">
+                    ← Terug naar overzicht
+                </a>
+
+                <a href="@Url.Action("AddToCart", "Product", new { id = Model.ProductId })" class="btn btn-success">
+                    🛒 Toevoegen aan winkelmandje
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.Reviews != null && Model.Reviews.Any())
+{
+    <hr />
+    <h4 class="mt-4">Reviews</h4>
+    <ul class="list-group">
+        @foreach (var review in Model.Reviews)
+        {
+            <li class="list-group-item">
+                <strong>@review.Comment</strong><br />
+                Score: @review.Score/5
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p class="text-muted mt-4">Nog geen reviews voor dit product.</p>
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Klant"))
+{
+    <hr />
+    <h4>Laat een review achter</h4>
+
+    using (Html.BeginForm("ReviewToevoegen", "Product", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("productId", Model.ProductId)
+
+        <div class="mb-2">
+            <label>Score (0–5)</label>
+            <input type="number" name="score" class="form-control" min="0" max="5" required />
+        </div>
+
+        <div class="mb-2">
+            <label>Jouw mening</label>
+            <textarea name="comment" class="form-control" rows="3" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Review verzenden</button>
+    }
+}

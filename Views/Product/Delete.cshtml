@@ -1,0 +1,23 @@
+﻿@model SnackLab.Entities.Product
+
+@{
+    ViewBag.Title = "Product verwijderen";
+}
+
+<h2 class="mb-4">Ben je zeker dat je dit product wil verwijderen?</h2>
+
+<div class="card shadow p-4 bg-light">
+    <h4 class="text-danger">@Model.Name</h4>
+    <p><strong>Beschrijving:</strong> @Model.Description</p>
+    <p><strong>Prijs:</strong> € @Model.Price.ToString("0.00")</p>
+    <p><strong>Categorie:</strong> @Model.Category</p>
+
+    @using (Html.BeginForm("Delete", "Product", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ProductId)
+
+        <input type="submit" value="Verwijderen" class="btn btn-danger" />
+        @Html.ActionLink("Annuleren", "Index", null, new { @class = "btn btn-secondary" })
+    }
+</div>

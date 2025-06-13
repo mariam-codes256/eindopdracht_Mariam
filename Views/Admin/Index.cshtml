@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Admin Dashboard";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4">Admin Dashboard</h1>
+    <p class="lead">Welkom, beheerder! Je hebt toegang tot dit gedeelte omdat je een Admin, Sitebeheerder of Winkelbeheerder bent.</p>
+
+    <hr />
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="@Url.Action("Index", "Product")">📦 Beheer producten</a>
+        </li>
+        <li class="list-group-item">
+            <a href="#">📑 Bekijk bestellingen <span class="text-muted">(nog toe te voegen)</span></a>
+        </li>
+        <li class="list-group-item">
+            <a href="#">👥 Gebruikersbeheer <span class="text-muted">(nog toe te voegen)</span></a>
+        </li>
+        <li class="list-group-item">
+            <a href="#">📊 Statistieken en rapporten <span class="text-muted">(nog toe te voegen)</s

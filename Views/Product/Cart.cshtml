@@ -1,0 +1,44 @@
+﻿@model List<SnackLab.Entities.Product>
+
+@{
+    ViewBag.Title = "Winkelmandje";
+    decimal totaal = 0;
+}
+
+<h2 class="mb-4">🛒 Winkelmandje</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">Je winkelmandje is leeg.</div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Product</th>
+                <th>Prijs</th>
+                <th>Beschrijving</th>
+                <th>Categorie</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                totaal += product.Price;
+                <tr>
+                    <td>@product.Name</td>
+                    <td>€ @product.Price.ToString("0.00")</td>
+                    <td>@product.Description</td>
+                    <td>@product.Category</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-end"><strong>Totaal:</strong></td>
+                <td><strong>€ @totaal.ToString("0.00")</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+}

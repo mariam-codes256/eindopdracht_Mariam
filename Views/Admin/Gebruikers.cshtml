@@ -1,0 +1,56 @@
+﻿@model List<SnackLab.WebApp.Controllers.GebruikerViewModel>
+
+@{
+    ViewBag.Title = "Gebruikersbeheer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">👥 Gebruikersbeheer</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Gebruikersnaam</th>
+                <th>Email</th>
+                <th>Rollen</th>
+                <th>Nieuwe rol toevoegen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var gebruiker in Model)
+            {
+                <tr>
+                    <td>@gebruiker.UserName</td>
+                    <td>@gebruiker.Email</td>
+                    <td>
+                        @foreach (var rol in gebruiker.Rollen)
+                        {
+                            <form action="@Url.Action("VerwijderRol", "Admin")" method="post" style="display:inline-block;">
+                                <input type="hidden" name="userId" value="@gebruiker.UserId" />
+                                <input type="hidden" name="rol" value="@rol" />
+                                <button type="submit" class="btn btn-sm btn-danger me-1">@rol ✖</button>
+                            </form>
+                        }
+                    </td>
+                    <td>
+                        <form action="@Url.Action("VoegRolToe", "Admin")" method="post" class="d-flex">
+                            <input type="hidden" name="userId" value="@gebruiker.UserId" />
+                            <select name="nieuweRol" class="form-select me-2">
+                                <option value="">-- Kies rol --</option>
+                                @foreach (var rol in gebruiker.AlleRollen)
+                                {
+                                    if (!gebruiker.Rollen.Contains(rol))
+                                    {
+                                        <option value="@rol">@rol</option>
+                                    }
+                                }
+                            </select>
+                            <button type="submit" class="btn btn-success btn-sm">Toevoegen</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
